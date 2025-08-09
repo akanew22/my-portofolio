@@ -1,6 +1,4 @@
 <?php
-echo'helloooooooooooo';
-print('helllll')
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = $_POST["name"];
   $email = $_POST["email"];
