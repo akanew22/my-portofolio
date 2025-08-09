@@ -726,38 +726,91 @@ color: var(--secon-bg-color);
 }
 
 /* Contact section----------------- */
-.contact{
-    background: var(--secon-bg-color);
-    width: 100%;
+.contact {
+  background: var(--secon-bg-color);
+  width: 100%;
 }
-.contact form{
+
+.contact form {
   text-align: center;
-  max-width: 50rem;  
+  max-width: 50rem;
   margin: 1rem auto;
   margin-bottom: 3rem;
 }
-.contact form input,.contact form textarea{
-    width: 100%;
-    color:var(--text-color);
-    background: var(--bg-color);
-    margin-bottom: .8rem;
-    border: none;
-    border-radius: 5px;
-    padding: .7rem;
-}
-.contact form textarea{
-    resize: none;
-}
-.formBtn{
-    display: flex;
-    justify-content: center;
-    width: 100%;
 
+/* Unified styling for inputs, textarea, select, and file input */
+.contact form input,
+.contact form textarea,
+.contact form select,
+.contact form input[type="file"] {
+  width: 100%;
+  color: var(--text-color);
+  background: var(--bg-color);
+  margin-bottom: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem;
+  font-family: inherit;
+  font-size: 1rem;
 }
-.formBtn .btn{
-    cursor: pointer;
-    font-size: 1rem;
+
+/* Prevent textarea from being resized */
+.contact form textarea {
+  resize: none;
 }
+
+/* Label styling for file upload and other labels */
+.contact form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Button container */
+.formBtn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Button styling */
+.formBtn .btn {
+  cursor: pointer;
+  font-size: 1rem;
+}
+.contact form .btn {
+  background: var(--hover-color);
+  color: var(--bg-color);
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.contact form label[for="file-upload"] {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--text-color);
+  background: var(--bg-color); /* ← This is the missing part */
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 0.7rem;
+}
+/* .contact form input[type="file"] {
+  display: none; /* Hide the default file input */
+
+
+
+.contact form label[for="file-upload"]:hover {
+  color: var(--hover-color); /* Define this variable in your root */
+}
+
 
 
 /* Footer section ------------- */
