@@ -417,16 +417,23 @@
       <h2>Contact me!</h2>
     </div>
     <form action="#" method="post" class="scroll-buttom">
-      <input type="text" placeholder="Your Name">
-      <input type="text" placeholder="Your Email">
-      <input type="text" placeholder="Your Address">
-      <input type="text" placeholder="Your Phone">
-      <textarea name="message" id="text-area" cols="35" rows="15" placeholder="Your message">
-</textarea>
-      <div class="btn-box formBtn">
-        <button type="submit" class="btn">Send Message</button>
-      </div>
-    </form>
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <select required>
+    <option value="">Select Project Type</option>
+    <option>Website Development</option>
+    <option>Web App</option>
+    <option>UI/UX Design</option>
+    <option>Other</option>
+  </select>
+  <textarea name="message" id="text-area" cols="35" rows="15" placeholder="Your message" required></textarea>
+  <input type="file" id="file-upload" accept=".pdf,.doc,.jpg,.png">
+  <label for="file-upload">Upload Design/Reference (Optional)</label>
+  <div class="btn-box formBtn">
+    <button type="submit" class="btn">Send Message</button>
+  </div>
+</form>
+
   </section>
 
   <!-- Footer section----------------------- -->
