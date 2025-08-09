@@ -133,6 +133,11 @@ header.sticky{
     
     
     }
+    .service-box p{
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: #bdbdbd;
+    }
     .home-content{
         max-width: 600px;
         margin-top: 4rem;
@@ -142,7 +147,9 @@ header.sticky{
         font-weight: 700;
     
     }
-    
+.about-content p{
+    font-size: 1.2rem;
+}
 
 /* Word Animation Fixes */
 .change-text h3 {
