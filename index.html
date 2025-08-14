@@ -416,23 +416,30 @@
       <span> Do you want to ask me?</span>
       <h2>Contact me!</h2>
     </div>
-   <form action="test.php" method="post" enctype="multipart/form-data" class="scroll-buttom">
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <select name="project" required>
+ <form action="submit.php" method="post" enctype="multipart/form-data" class="scroll-buttom">
+  <input type="text" name="name" placeholder="Your Name" required class="input-name">
+  
+  <input type="email" name="email" placeholder="Your Email" required class="input-email">
+  
+  <select name="project" required class="select-project">
     <option value="">Select Project Type</option>
     <option>Website Development</option>
     <option>Web App</option>
     <option>UI/UX Design</option>
     <option>Other</option>
   </select>
-  <input type="file" name="file[]" id="file-upload" accept=".pdf,.doc,.jpg,.png" multiple>
-  <label for="file-upload">Upload Design/Reference (Optional)</label>
-  <textarea name="message" id="text-area" cols="35" rows="15" placeholder="Your message" required></textarea>
+  
+  <input type="file" name="file[]" id="file-upload" accept=".pdf,.doc,.jpg,.png" multiple class="file-input">
+  <label for="file-upload" class="file-label">Upload Design/Reference (Optional)</label>
+  
+  <textarea name="message" id="text-area" cols="35" rows="15" placeholder="Your message" required class="textarea-message"></textarea>
+  
   <div class="btn-box formBtn">
     <button type="submit" class="btn">Send Message</button>
   </div>
 </form>
+
+
 
 
   </section>

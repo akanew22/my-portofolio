@@ -1,4 +1,4 @@
- <?php
+<?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -15,8 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "❌ Invalid email address.";
         exit;
     }
-
-    // Create PHPMailer instance
     $mail = new PHPMailer(true);
 
     try {
@@ -25,16 +23,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'akanewt22@gmail.com'; // Your Gmail
-        $mail->Password = 'sebnfdkkwzdsdaxg';   // Use Gmail App Password
+        $mail->Password = 'sebnfdkkwzdsdaxg';     // Gmail App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
         // Email headers
         $mail->setFrom($email, $name);
         $mail->addAddress('akanewt22@gmail.com'); // Your receiving email
+        $mail->addReplyTo($email, $name);
         $mail->Subject = "New Project Submission";
 
-        // HTML and plain text body
+        // Optional: Request read receipt (may be ignored by Gmail)
+        $mail->addCustomHeader("Disposition-Notification-To: akanewt22@gmail.com");
+
+        // Optional: Add delivery status notification (DSN)
+        $mail->ConfirmReadingTo = 'akanewt22@gmail.com';
+
+        // Email body
         $mail->isHTML(true);
         $mail->Body = "
             <strong>Name:</strong> {$name}<br>
@@ -59,11 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Send the email
-        $mail->send();
-        echo "✅ Thank you! Your message has been sent successfully.";
+        if ($mail->send()) {
+            echo "✅ Thank you! Your message has been sent successfully.";
+        } else {
+            echo "⚠️ Message was not sent. Please check your SMTP settings.";
+        }
     } catch (Exception $e) {
         error_log("Mailer Error: {$mail->ErrorInfo}");
         echo "❌ Message could not be sent. Please try again later.";
     }
 }
-?> 
+?>
