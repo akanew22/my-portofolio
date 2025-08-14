@@ -429,8 +429,14 @@
     <option>Other</option>
   </select>
   
-  <input type="file" name="file[]" id="file-upload" accept=".pdf,.doc,.jpg,.png" multiple class="file-input">
-  <label for="file-upload" class="file-label">Upload Design/Reference (Optional)</label>
+<input type="file" name="file[]" id="file-upload"
+       accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
+               application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+               application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation,
+               image/*, text/plain, application/rtf, application/zip, application/x-rar-compressed,
+               audio/*, video/*"
+       multiple class="file-input">
+         <label for="file-upload" class="file-label">Upload Design/Reference (Optional)</label>
   
   <textarea name="message" id="text-area" cols="35" rows="15" placeholder="Your message" required class="textarea-message"></textarea>
   

@@ -48,20 +48,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <strong>Message:</strong><br>" . nl2br($message);
         $mail->AltBody = "Name: {$name}\nEmail: {$email}\nProject Type: {$project}\nMessage:\n{$message}";
 
-        // Handle file uploads
         if (!empty($_FILES['file']['name'][0])) {
-            foreach ($_FILES['file']['tmp_name'] as $key => $tmp_name) {
-                $file_name = basename($_FILES['file']['name'][$key]);
-                $file_tmp = $_FILES['file']['tmp_name'][$key];
-                $file_size = $_FILES['file']['size'][$key];
-                $file_type = mime_content_type($file_tmp);
+    // Define allowed MIME types based on your input's accept attribute
+    $allowed_types = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'image/webp',
+        'text/plain',
+        'application/rtf',
+        'application/zip',
+        'application/x-rar-compressed',
+        'audio/mpeg',
+        'audio/wav',
+        'video/mp4',
+        'video/x-msvideo'
+    ];
 
-                $allowed_types = ['image/jpeg', 'image/png', 'application/pdf', 'application/msword'];
-                if (is_uploaded_file($file_tmp) && in_array($file_type, $allowed_types) && $file_size <= 5 * 1024 * 1024) {
-                    $mail->addAttachment($file_tmp, $file_name);
-                }
-            }
+    foreach ($_FILES['file']['tmp_name'] as $key => $tmp_name) {
+        $file_name = basename($_FILES['file']['name'][$key]);
+        $file_tmp = $_FILES['file']['tmp_name'][$key];
+        $file_size = $_FILES['file']['size'][$key];
+        $file_type = mime_content_type($file_tmp);
+
+        // Validate file type and size (max 5MB)
+        if (is_uploaded_file($file_tmp) && in_array($file_type, $allowed_types) && $file_size <= 5 * 1024 * 1024) {
+            $mail->addAttachment($file_tmp, $file_name);
         }
+    }
+}
+
 
         // Send the email
         if ($mail->send()) {
