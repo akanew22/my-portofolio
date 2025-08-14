@@ -111,10 +111,3 @@ scrollBotton.forEach((el)=>observer.observe(el));
 
 const scrollTop=document.querySelectorAll(".scroll-top");
 scrollTop.forEach((el)=>observer.observe(el));
-
-function alrt(){
-   let arr=['akanew','ermi','gashity','biruk'];
-   arr.push('alem')
-   console.log(arr);
-
-}
