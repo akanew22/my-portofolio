@@ -328,16 +328,6 @@ transition: .4s;
     height: auto;
 
 }
-.liquid-shape{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    top: 10%;
-}
-.liquid-shape:nth-child(2){
-    filter: blur(50px);
-}
 
 /* about scetion of css------------------------ */
 .about{
