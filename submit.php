@@ -2,8 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
-
+require 'Exception.php';
+require 'PHPMailer.php';
+require 'SMTP.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Sanitize and validate inputs
     $name = htmlspecialchars(trim($_POST["name"]));
@@ -79,19 +80,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $file_type = mime_content_type($file_tmp);
 
         // Validate file type and size (max 5MB)
-        if (is_uploaded_file($file_tmp) && in_array($file_type, $allowed_types) && $file_size <= 5 * 1024 * 1024) {
-            $mail->addAttachment($file_tmp, $file_name);
-        }
+        if ($_FILES['file']['error'][$key] === UPLOAD_ERR_OK &&
+    in_array($file_type, $allowed_types) &&
+    $file_size <= 5 * 1024 * 1024) {
+    $mail->addAttachment($file_tmp, $file_name);
+}
+
     }
 }
 
 
         // Send the email
         if ($mail->send()) {
-            echo "✅ Thank you! Your message has been sent successfully.";
-        } else {
-            echo "⚠️ Message was not sent. Please check your SMTP settings.";
-        }
+    header("Location: thankyou.html");
+    exit;
+} else {
+    echo "⚠️ Message was not sent. Please check your SMTP settings.";
+}
+
     } catch (Exception $e) {
         error_log("Mailer Error: {$mail->ErrorInfo}");
         echo "❌ Message could not be sent. Please try again later.";
